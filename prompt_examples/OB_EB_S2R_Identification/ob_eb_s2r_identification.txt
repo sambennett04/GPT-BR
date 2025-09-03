@@ -1,0 +1,58 @@
+# Task Summary
+You are an expert developer of Android applications. You will be given a user-reported bug for the {application_name} Android application, where each sentence is labeled using a number. Your task is to identify the sentences that describe the:
+1. **Observed Behavior (OB)**: All sentences describing an incorrect or unexpected behavior of the app’s misbehavior.
+2. **Expected Behavior (EB)**: All sentences describing expected or correct app behavior. 
+3. **Steps to Reproduce (S2Rs)**: All sentences that describe the actions made on the app to replicate or reproduce the incorrect or unexpected app behavior.
+
+---
+
+# Identification Guidelines
+Consider the following factors for identifying OB, EB, and S2R sentences.
+
+## Observed Behavior of the app (OB):
+1. An OB sentence describes an incorrect or unexpected behavior of the app. For example, the sentence “The app stops working when I press the submit button” describes an OB sentence.
+2. There could be multiple OB sentences anywhere in the bug report, including the first sentence of the bug report, marked with (0). In this case, all sentences are OB sentences. 
+3. Distinct OB sentences anywhere in the bug report may or may not be semantically similar. Examples of two sentences semantically similar are: “I cannot open the results summary” and “Result summary is not displayed”. Examples of two sentences that are not semantically similar are “I cannot open the results summary” and “Nothing happens”.
+4. If a sentence describes only the cause for the bug but not the observed, unexpected/incorrect app behavior, the sentence is not an OB sentence. For example, the sentence “The reason seems to be the conversion of kg to lb is incorrect” describes the cause of the bug, not an OB.
+5. Likewise, if a sentence contains only app or device version information or app execution trace information, the sentence is not an OB sentence. For example, the sentence “java.io.FileNotFoundException: de.danoeh.antennapod-1.7.1-1-Expected-Top_Down-0.xml (No such file or directory)” is not an OB sentence.
+6. A sentence can describe more information besides the OB; in such cases, the whole sentence is an OB sentence. For example, the sentence “The app crashes if I enter a negative number in the Amount field, and this is because that field can not handle a negative number” describes an OB, an S2R, and the problem cause, so this is an OB sentence.
+7. A sentence is not OB if it describes conditions that are necessary to reproduce the bug. For example, the sentence “The bug is reproduced only in the dark mode” describes a reproduction condition, not an OB sentence.
+8. A sentence is not an OB if it describes the motivation or importance of the bug. For example, the sentence “This is a serious problem as the user will get confused by the red color” describes how the problem affects the user, so it is not an OB sentence.
+9. A sentence is not OB if it describes the rationale why the reporter considers the problem as a bug. For example, the sentence “I think this is a bug as the user may want to enter a floating-point number in the Amount field” describes the reason why the reporter considers the problem as a bug, and this is not an OB sentence.
+10. An OB sentence can also be an EB sentence if it describes both observed behavior and expected behavior. Typically, these sentences contain phrases like “rather than”, “instead of”, etc. For example, the sentence “The correct calculation of the total amount should be shown instead of doing nothing” contains both an EB sentence and an OB sentence.
+11. Both OB and S2Rs can exist in a sentence. In these cases, the sentence should be considered as both an OB and an S2Rs sentence. For example, the sentence “Click the submit button and see the app crashes” contains both S2R and OB sentences.
+12. The semantically opposite sentence of an explicit EB can be considered an OB. Explicit EB refers to labeled EB sentences under the headers like “Expected Behavior”/“Desired Behavior”/“Expected Results”/“Expected Output”/etc. For example, if an explicit EB sentence is “The app should show the total amount correctly” and another sentence in the bug report is “The app is not showing the total amount,” then the second sentence is OB as it is semantically opposite of the explicit EB sentence.
+13. A sentence is an OB sentence if it describes the observed behavior, even if it is a part of the sequential actions (sentences). For example, in a bug report, there are 5 sentences under the “Steps to reproduce”/”S2Rs” header, and the first 4 of them represent the actions to reproduce the bug, and the last one is “see error”. Here, the “see error” is an OB sentence as it describes the observed behavior of the reporter.
+
+## Expected Behavior of the app (EB):
+1. An EB sentence describes expected or correct app behavior. For example, the sentence “The BMI should be shown properly regardless of the unit of the weight” is an EB sentence. The EB is usually the opposite of the OB. 
+2. There could be multiple EB sentences anywhere in the bug report, including the first sentence of the bug report, marked with (0). In this case, all sentences are EB sentences. 
+3. Distinct EB sentences anywhere in the bug report can be semantically similar. Examples of two EB sentences semantically similar are: “The correct BMI should be displayed regardless of the unit of the weight” and “I expect to see the correct BMI score”.
+4. A sentence can describe more information besides the EB; in such cases, the whole sentence is an EB sentence. For example, the sentence “The app should correctly calculate the BMI, but it can not, and it is due to it cannot convert lb to kg” describes EB, OB, and the problem cause, and this is an EB sentence.
+5. An EB sentence can also be an OB sentence if it describes both observed behavior and expected behavior. Typically, these sentences contain phrases like “rather than”, “instead of”, etc. For example, the sentence “The correct BMI score should be displayed rather than showing nothing” contains both EB and OB sentences.
+
+## Steps to Reproduce the Bug (S2Rs):
+1. An S2R sentence describes the actions made on the app to replicate the incorrect or unexpected app behavior. Actions represent interactions that app users make on regions or GUI components of the app screen. Common actions made on Android apps are Click, Type, Swipe, Pinch, and Long-click. These actions may be described with synonym words. For example, Tap and Touch are synonyms of Click; Input and Enter are synonyms of Type; and Scroll up/down is a synonym of Swipe. An example of an S2R sentence is “Input the amount”.
+2. S2R sentences also describe actions that are high-level and can be worded via verbs such as start, open, add, go back, select, insert, refresh, etc. For example, “Insert the amount” is an S2R sentence.
+3. A sentence can describe more information besides the S2Rs; in such cases, the whole sentence is considered to be an S2R sentence. For example, the sentence “Input the expense and check with multiple values” describes an S2R and additional information, so this is an S2R sentence.
+4. Both OB and S2Rs can exist in a sentence. In these cases, the sentence should be considered as both an OB and an S2Rs sentence. For example, the sentence “Enter the weight and see error” contains both S2R and OB sentences.
+5. A sentence that is not an action should not be considered as an S2R, even if it is a part of the sequential actions (sentences). For example, in a bug report, there are 5 sentences under the “Steps to reproduce”/”S2Rs” header, and the first 4 of them represent the actions to reproduce the bug, and the last one is “see error”. Here, the “see error” is not an S2R sentence as it is not an action. Rather, it is an OB sentence.
+
+---
+
+# Inputs
+
+## User Reported Bug
+{user_reported_bug}
+
+---
+
+# Output Format
+Please list the numbers of the sentences that describe OB, EB, or S2R, using the following format:
+OBs: list the numbers of the sentences that describe the Observed Behavior of the app, separated by commas
+EBs: list the numbers of the sentences that describe the Expected Behavior of the app, separated by commas
+S2Rs: list the numbers of the sentences that describe the Steps to Reproduce the bug, separated by commas
+
+---
+
+**Strictly follow the output format as above and do not include anything else in the response.*

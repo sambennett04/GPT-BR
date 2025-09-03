@@ -1,0 +1,59 @@
+# Task Summary
+You are an expert developer of Android applications. For a given user-reported bug for the {application_name} Android application, your task is to generate a **complete set of steps-to-reproduce (S2Rs)** that can reproduce the bug on a device.
+
+You will be provided with:
+* The entire user-reported bug with sentence labels that indicate **Observed Behavior (OB)**, **Expected Behavior (EB)**, and **Steps to Reproduce (S2Rs)** sentences in the bug report. 
+* A set of application transitions with the action and component information. Here, the action represents an operation (e.g.,  tap, swipe, long tap, etc.) that a user can perform on the GUI component of an app screen.
+* The activity names of the screens, with a short description, to understand the screens.
+* The bug manifesting screen, i.e., the application screen where the user observed the bug.
+
+# Output Structure 
+**Steps to Reproduce**
+<list_of_the_steps_in_the_S2Rs>
+
+---
+
+# Inputs
+
+## User Reported Bug
+{user_reported_bug}
+
+**Sentence Labels**
+{sentence_labels}
+
+## Application Transitions 
+{transitions}
+
+## Activity Names with short description of each Screen
+{screens_with_description}
+
+## Bug Manifesting Screen
+{buggy_screen}
+
+---
+
+# Instructions for Generating Steps to Reproduce
+
+1. Analyze the user-reported bug report sentences, specifically, the S2R sentences, to understand what the user did to reproduce the bug. Not that the user reported S2Rs can be compound (i.e., multiple steps in one sentence), incomplete (i.e., missing some steps to reproduce the bug), and/or ambiguous (i.e., not clear).
+2. Identify the relevant application transitions for the user-reported S2R sentences to generate the S2Rs.
+3. **Start** with opening the application.
+4. **Assume a fresh install** — the app has not been opened before (i.e., first-time launch behavior). 
+5. Each step must describe one **specific user interaction** (e.g., tap, swipe, long tap, etc.).  
+6. Only include interactions that have a corresponding **transition** in the graph data. 
+7. The graph data does not capture transitions caused by **device rotation (orientation changes)**. If the user-reported bug explicitly mentions a **device rotation/orientation change**, make sure to include it when generating the S2Rs. 
+8. The transitions are presented in a graph format where each transition includes:
+   - A **source screen (s)** — where the interaction starts.  
+   - A **target screen (t)** — the result of the interaction.  
+9. Starting from the initial transition, i.e., the “open app” transition, your goal is to reach the bug manifesting screen by identifying the most relevant transitions for the user-reported S2Rs.  
+   - If the bug manifesting screen occurs at an intermediate step, do **not** stop there.  
+   - Continue generating the **full sequence of steps** required to reproduce the bug.
+10. The generated S2Rs must form a **valid and complete path** in the transition graph, starting from the initial screen and ending at the screen where the bug occurs.  
+11. The **target screen** of one S2R must be the **source screen** of the next.  
+12. Use natural language to describe each S2R, referencing the interaction and screen information from the transition data. 
+13. **Do not include** the activity names to describe the steps.
+14. Append the correct **transition ID** for the corresponding S2R to the end of each S2R in this format: `<transition_id>`.    
+15. **Do not include** any steps that are not interactions or are not backed by a valid transition (e.g., "observe the error"). 
+
+---
+
+**Strictly follow the structure and instructions above to ensure consistency and accuracy in the generated bug report.**

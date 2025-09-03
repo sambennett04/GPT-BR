@@ -1,0 +1,101 @@
+# Task Summary
+You are an expert developer of Android applications. Given a **user-submitted bug report** for the **{application_name}** Android application, your task is to generate a **high-quality structured bug report** with four sections: **Title**, **Observed Behavior (OB)**, **Expected Behavior (EB)**, and **Additional Information**.  
+Assume that the **Steps to Reproduce (S2Rs)** are already available and do not need to be generated.
+
+You will be provided with the following information **extracted with an automated approach**:
+* The entire **user-submitted bug report** with sentence labels that indicate **Observed Behavior (OB)**, **Expected Behavior (EB)**, and **Steps to Reproduce (S2Rs)** sentences in the bug report.
+* The bug manifesting screen description, i.e., the application screen where the user observed the bug.
+* The complete set of **Fine-grained Steps to Reproduce (S2Rs)**.
+* The descriptions for the application screens involved in the **Fine-grained S2Rs**.
+
+---
+
+# Inputs
+
+## User Submitted Bug Report
+{user_reported_bug}
+
+**Sentence Labels**
+{sentence_labels}
+
+## Bug Manifesting Screen
+{manifesting_screen_description}
+
+## Fine-grained S2Rs
+The steps are provided in the following format: `{numbering}. {step} {<source_screen_id: target_screen_id>}`
+
+{fine_grained_s2rs}
+
+## Fine-grained S2Rs Involved Screen Descriptions
+The screen descriptions are provided in the following format: `<screen_id> - <activity_name>: <screen_description>`
+{s2r_involved_screen_descriptions}
+
+---
+
+# Instructions for Generating the four sections of the **high-quality structured bug report**
+1. **Understand the user-submitted bug report and other available inputs**
+   - Read the **user-submitted bug report** carefully.
+   - Pay close attention to the sentences labeled with **Observed Behavior (OB)**, **Expected Behavior (EB)**, and **Steps to Reproduce (S2R)** to identify what the user experienced.
+   - Analyze the **bug manifesting screen description**, including its name and the **fine-grained S2Rs**, including the involved screen descriptions, to understand the location **where the bug was manifested** and the **interactions to reproduce the bug**.
+
+2. **Identify the required `information elements` to generate OB and EB**
+Extract the following elements from the available inputs, especially the OB, EB, and S2R sentences in the user-submitted bug report, bug manifesting screen description, and the **fine-grained S2Rs** with involved screen descriptions to identify these elements (do not invent information if missing):
+   - **Buggy Behavior** (What buggy behavior is observed by the user?): The specific buggy behavior (i.e., the problem) reported in the bug.
+   - **Triggering GUI Interactions** (What application interaction(/s) triggers the bug?): The user interaction(/s) on the application that triggers the bug.
+   - **Triggering Screen References** (Which application screen causes the bug and/or where the bug was observed?): The application screen where performing the interaction causes the bug and/or the screen where the bug was observed.
+     - Do not use activity names directly to refer to the **triggering screen**. Use the screen name or generate a high-level screen name using the activity name and screen description.
+   - **Correct Behavior** (What application behavior is expected by the user?): The specific correct application behavior that should happen instead of the buggy behavior.
+
+3. **Observed Behavior (OB)**
+   - Use the identified `information elements` among these three: **Buggy Behavior**, **Triggering GUI Interactions**, and **Triggering Screen References**.
+   - Only use the identified `information element` from the provided inputs; do not hallucinate any `information element` if that is not available.
+   - If the screen name is not explicitly found in the available inputs, generate a general name for the screen using the screen description.
+   - Use this template to write the OB description: On [Triggering Screen Reference], if the user [Triggering GUI Interaction], the [Buggy Behavior].
+   - Adapt the template if needed, but do not add unmentioned details.
+   - If an `information element` is missing, write OB without that.
+
+4. **Expected Behavior (EB)**
+   - Use the identified **Correct Behavior**.
+   - If the **Correct Behavior** is not explicitly mentioned in the user-submitted bug report, infer that from the provided inputs and your generated OB description.
+   - Use this template to write the EB description: [subject] should/should not [Correct Behavior/Incorrect Behavior].
+   - Adapt the template if needed, but do not add unmentioned details.
+   - Do not repeat information that is already mentioned in the OB.
+
+5. **Title**
+   - Write one concise sentence that summarizes the problem clearly.
+
+6. **Additional Information**
+   - Include environment details (e.g., version, build number, device, OS) if present in the user-reported bug.  
+   - If no such details are found, write `N/A`. 
+
+7. **Style Requirements** 
+   - Do not hallucinate or introduce details not present in the inputs.  
+   - Maintain language clarity, precision, and consistency across all sections.
+
+8. **Output Instructions**
+   - Generate the **bug report** with the four sections: Title, Observed Behavior, Expected Behavior, and Additional Information, and also extract the **Information Elements**.  
+   - Provide the response using the following JSON format.  
+   - Derive the Information Elements strictly from the generated OB and EB using the provided OB and EB templates.  
+   - Do **not** add any details that are not present in the generated OB or EB when creating the Information Elements.
+
+---
+
+# Output Structure
+Provide the output in the following JSON format, including the **identified information elements** and the **high-quality bug report sections** (put “N/A” where applicable):
+
+{
+  "Bug Report": {
+    "Title": "",
+    "Observed Behavior": "",
+    "Expected Behavior": "",
+    "Additional Information": ""
+  },
+  "Information Elements": {
+    "Buggy Behavior": "",
+    "Triggering GUI Interaction": "",
+    "Triggering Screen References": "",
+    "Correct Behavior": ""
+  }
+}
+
+**Strictly follow the output structure and the instructions when generating the bug report.**

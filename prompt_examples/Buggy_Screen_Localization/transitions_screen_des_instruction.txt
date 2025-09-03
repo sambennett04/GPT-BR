@@ -1,0 +1,64 @@
+# Task Summary
+You are an expert Android developer. You will receive a user-reported bug for the **{application_name}** Android application, along with descriptions of all its UI screens and the interactions that can be made on the screens, i.e., transitions. Your task is to identify the **bug manifesting screens** — the screens where the bug actually appears to the user.
+
+For crash-related bugs, the manifesting screen is the **application crash screen** or the **home screen** of the Android device, not the screen that triggered the crash.
+
+You will be provided with:
+- The entire user-reported bug with sentence labels that indicate **Observed Behavior (OB)**, **Expected Behavior (EB)**, and **Steps to Reproduce (S2Rs)** sentences in the bug report.
+- A set of application screens with activity names and a short description to understand the functionality of the screens.
+- A set of application transitions with the action and component information. Here, the action represents an operation (e.g., tap, swipe, long tap, etc.) that a user can perform on the GUI component of an app screen.
+
+---
+
+# Inputs
+
+## User-Reported Bug
+{user_reported_bug}
+
+**Sentence Labels**
+{sentence_labels}
+
+## Application Screens
+Each screen is described with an activity name and a short description in this format: `<screen_id> - <activity_name>: <screen_description>`
+
+{screens_with_description}
+
+## Application Transitions
+{transitions}
+
+---
+
+# Instructions
+
+1. **Understand the Bug Report**
+   - Carefully read the user-submitted bug report.
+   - Pay close attention to the sentences labeled with **Observed Behavior (OB)**, **Expected Behavior (EB)**, and **Steps to Reproduce (S2R)** to identify what the user experienced.
+   - Identify the **final bug triggering operation** by the user, i.e., the action that leads to the occurrence of the bug.
+
+2. **Identify the `most relevant transitions` for the `final bug triggering operation`**
+   - Analyze all the application transitions one by one to identify the **most relevant transitions** for the **final bug triggering operation**.
+     - The transitions are presented in a graph format where each transition includes:
+       - A **source screen (s)** — where the interaction starts.
+       - A **target screen (t)** — the result of the interaction.
+   - Analyze the description of the source and target screens of the transition to verify:
+     - If the **source screen** is where the user performed the `final bug triggering operation`.
+     - If the **target screen** is where the user observed the bug, i.e., the **bug manifesting screen** according to the user’s description.
+   - Assign a **manifesting probability score** (0-100) based on your transition and screen analysis using the following rubric:
+     - **0-20**: Contradicts the bug or unrelated.
+     - **21-40**: Weak match; only indirect or partial cues.
+     - **41-60**: Moderate plausibility; some cues align but evidence incomplete.
+     - **61-80**: Strong alignment; multiple cues support manifestation.
+     - **81-100**: Direct evidence; screen clearly matches the bug's manifestation.
+
+3. **Rank the Top Screens**
+   - Select the **top 5 potential bug manifesting screens** by probability score.
+   - Order them from most likely to least likely.
+
+---
+
+# Response Format
+
+Respond strictly in the following format:
+
+**Bug Manifesting Screens**
+<screen_id>: <probability_score>
