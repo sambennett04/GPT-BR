@@ -51,6 +51,6 @@ With GPT-BR, we have not only be able to garuntee the inclusion of all 3 key bug
 For our evaluation of Observed Behavior and Expected Behavior, we needed to come up with a novel way of gauging correctness. We landed on a quality model that marked each information element of observed behavior and expected behavior, as listed in step 5 above, as Correct, Incomplete, Ambiguous, Missing or Incorrect. Our evaluation of GPT-BR is ongoing (specific graph will be added later), however our early results show strong improvement over user bug reports, with GPT-BR generated observed behavior and expected behavior having almost all correct information elements. 
 
 ## Future Plans
-The approach in this project will be used to further develop BURT++, a full-stack web application for interactive mobile app bug reporting. If you would like to see the status of BURT++, please visit (https://github.com/sambennett04/BURT_with_LLM).
+The approach in this project will be used to further develop BURT++, a full-stack web application for interactive mobile app bug reporting. If you would like to see the status of BURT++, please visit https://github.com/sambennett04/BURT_with_LLM.
 
 The findings of this research project are currently being aggregated and finalized for a paper, aiming for submition to the [ACM International Conference on the Foundations of Software Engineering](http://conf.researchr.org/home/fse-2026). I will add a link to the full paper here, once it has been published. 
