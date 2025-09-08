@@ -26,14 +26,14 @@ Architecture Diagram:
 
     - EB:
         - Correct Behavior: The specific correct application behavior that should happen instead of the buggy behavior.
-
-We engineered our generation prompt to have o4-mini procedurely construct these information elements from the input data and include them in the generated response. 
+        
+    We engineered our generation prompt to instruct o4-mini to procedurely construct these information elements from the execution model data and include them in the generated response. An example CoT Title/OB/EB/Additional Information generation prompt can be found in the [Title, OB, EB, Additional Information Generation Folder](prompt_examples/Title_OB_EB_Additional_Info_Generation)
 
 6. High-Quality Bug Report Compilation: Generated Title, Observed Behavior, Expected Behavior, Steps to Reproduce and Additional Information, are joined in the order specified in the above archtecture figure to create a high-quality, application accurate, bug report. 
 
 
 ## Example I/O
-
+In the [Example Inputs and Outputs Folder](example_inputs_outputs), you will find 2 example bugs, including input user bug report, GPT generated output bug reports and "ideal", Ground Truth bug report. Comparing the three, you can see that GPT-BR greatly increases the quality of the user bug report, nearing the level of the ideal bug report. For a full analysis of results, see the below section. 
 
 ## Results
 

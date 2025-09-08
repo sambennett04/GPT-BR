@@ -1,0 +1,17 @@
+Title: Crash when switching report display to percent values
+
+Observed Behavior: On the Incomes by Articles report screen, if the user changes the display option from view values to percent values, the application crashes and stops working.
+
+Expected Behavior: The application should continue working properly and display the report data in percent values after the user switches the display option.
+
+Steps to Reproduce:
+Open the app 
+Tap “Allow” on the SMS permission prompt. 
+Tap the “Reports” button on the dashboard. 
+Tap the “Incomes by Articles” tab. 
+Tap the display (eye) icon in the toolbar.
+In the display dialog, tap the “View values” checkbox to uncheck it. 
+Tap the “Use percent values” checkbox to check it.
+Tap “OK” to apply the setting and reproduce the crash.
+
+Additional Information: Device: Oppo Neo 7; OS: Android 6.1.

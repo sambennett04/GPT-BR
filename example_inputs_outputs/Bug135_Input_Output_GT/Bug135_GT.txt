@@ -1,0 +1,27 @@
+Title: The Parent Categories page of the Wikimedia Commons application is blank in night mode.
+
+Observed Behavior: In night mode, on the Category screen, if the user clicks the Parent Categories tab, they see a blank page.
+
+Expected Behavior: The Parent Categories of the current category should be displayed.
+
+Steps to Reproduce:
+    1. Open App
+    2. Swipe Left
+    3. Swipe Left
+    4. Swipe Left
+    5. Swipe Left
+    6. Click Yes
+    7. Click Skip
+    8. Click Yes
+    9. Click the navigation drawer button, i.e., the menu option
+    10. Click Explore
+    11. Click a picture
+    12. Swipe Up
+    13. Swipe Up
+    14. Click a Category
+    15. Click Parent Categories
+
+Additional Information:
+Device: Xiaomi A1
+OS: Android 8.1.0
+App Version: 2.8.5

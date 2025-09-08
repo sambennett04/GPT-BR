@@ -1,0 +1,37 @@
+Title: The Family Finance application crashes if the View is changed in the Report Section.
+      
+Observed Behavior: On the Display of Incomes by Articles pop-up of the reports screen, if the user changes the appearance of the report from "view values" to use percent values", the application crashes.
+
+Expected Behavior: The appearance of the report should be changed to "use percent values".
+
+Steps To Reproduce:
+    1. Open app
+    2. Click allow button
+    3. Click Report
+    4. Click Incomes by Articles or Expenses by Articles
+    5. Click View Button
+    6. Click view values check box
+    7. Click use percent values checkbox
+    8. Click OK
+
+Additional Information:
+Device: Oppo Neo 7
+OS: Android 6.1
+Bug Recording: https://www.youtube.com/watch?v=MYMrVP3fQ_g>feature=youtu.be
+Logcat: Process: io.github.zwieback.familyfinance, PID: 13191
+java.lang.NullPointerException: Attempt to invoke virtual method 'void com.github.mikephil.charting.data.PieData.setDrawValues(boolean)' on a null object reference
+    at io.github.zwieback.familyfinance.business.chart.fragment.PieChartFragment.onApplyDisplay(PieChartFragment.java:160)
+    at io.github.zwieback.familyfinance.business.chart.fragment.PieChartFragment.onApplyDisplay(PieChartFragment.java:40)
+    at io.github.zwieback.familyfinance.business.chart.activity.ChartActivity.onApplyDisplay(ChartActivity.java:150)
+    at io.github.zwieback.familyfinance.business.chart.dialog.ChartDisplayDialog.lambda$onCreateDialog$0(ChartDisplayDialog.java:53)
+at io.github.zwieback.familyfinance.business.chart.dialog.
+-$$Lambda$ChartDisplayDialog$3JuCWsAV3m9zaJu55iVYBsSndyU.
+onClick(lambda)
+    at android.support.v7.app.AlertController$ButtonHandler.handleMessage(AlertController.java:167)
+    at android.os.Handler.dispatchMessage(Handler.java:111)
+    at android.os.Looper.loop(Looper.java:218)
+    at android.app.ActivityThread.main(ActivityThread.java:5657)
+    at java.lang.reflect.Method.invoke(Native Method)
+    at java.lang.reflect.Method.invoke(Method.java:372)
+    at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:990)
+    at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:785)```

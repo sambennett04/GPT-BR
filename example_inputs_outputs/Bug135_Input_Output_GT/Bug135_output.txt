@@ -1,0 +1,22 @@
+Title: Parent Categories tab shows blank space in night mode
+
+Observed Behavior: On the category detail view in night mode, if the user taps the “PARENT CATEGORIES” tab, a blank space is displayed instead of the list of parent categories.
+
+Expected Behavior: The app should display the names of the parent categories in the “PARENT CATEGORIES” tab.
+
+Steps to Reproduce: 
+Open the app.
+Swipe left to move from the welcome screen to the next tip.
+Swipe left to continue through the welcome tips. 
+Swipe left to continue through the welcome tips. 
+Swipe left to reach the quiz confirmation screen. 
+Tap the “YES!” button to confirm you understand the upload guidelines. 
+On the login screen, tap “Skip.” 
+In the skip-login confirmation dialog, tap “YES.” 
+In the Explore image list, tap any image. 
+Swipe up on the image preview to expand into detailed view. 
+Swipe up again to scroll down to the categories section. 
+Tap any category in the list. 
+In the category detail view, tap the “PARENT CATEGORIES” tab. 
+
+Additional Information: Device: Xiaomi A1 (Android 8.1.0); Commons app version: 2.8.5; Night mode enabled.
